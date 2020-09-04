@@ -1,5 +1,7 @@
 package com.moritz.android.madassignment1.model;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,10 +24,11 @@ public class GameData {
     public static final int TARGET_POINTS_MIN = 6;
     public static final int TARGET_POINTS_MAX = 10;
 
-
     private int playerPoints;
     private int targetPoints;
     private int seedPoints;
+
+    List<Country> countries;
 
     private GameData() {
         //Randomly select seed points (& therefore initial score)
@@ -33,6 +36,41 @@ public class GameData {
 
         //Randomly select target points
         targetPoints = randBetween(TARGET_POINTS_MIN, TARGET_POINTS_MAX);
+
+        //Generating questions information
+        countries = generateQuestions();
+    }
+
+    /**
+     * Generates hard-coded questions for game for various countries.
+     * @return generated list of questions
+     */
+    private static List<Country> generateQuestions() {
+        List<Country> countryList = new LinkedList<>();
+
+        Country testA = new Country();
+        countryList.add(testA);
+        countryList.add(testA);
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+
+        Country testB = new Country();
+        countryList.add(testB);
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+
+        Country testC = new Country();
+        countryList.add(testC);
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+
+        return countryList;
     }
 
     public int getPlayerPoints() {

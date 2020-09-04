@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Question {
     private String question;
-    List<String> choices;
+    String[] choices;
     int correctChoice;
 
     private int points;
     private int penalty;
 
-    public Question(String question, List<String> choices, int correctChoice, int points, int penalty) {
+    public Question(String question, String[] choices, int correctChoice, int points, int penalty) {
         this.question = question;
         this.choices = choices;
         this.correctChoice = correctChoice;
