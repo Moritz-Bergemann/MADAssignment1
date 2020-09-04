@@ -1,4 +1,4 @@
-package com.moritz.android.madassignment1.model;
+package com.moritz.android.madassignment1;
 
 import android.os.Bundle;
 
@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.moritz.android.madassignment1.R;
 
 /**
  * A simple {@link Fragment} subclass.

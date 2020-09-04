@@ -10,31 +10,27 @@
         android:id="@+id/oneButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/one"
-        android:contentDescription="One" />
+        android:contentDescription="One"
+        android:src="@drawable/one" />
 
     <ImageButton
         android:id="@+id/twoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/two_col"
-        android:contentDescription="Two" />
+        android:contentDescription="Two"
+        android:src="@drawable/two_col" />
 
     <ImageButton
         android:id="@+id/threeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/three_col"
-        android:contentDescription="Three" />
+        android:contentDescription="Three"
+        android:src="@drawable/three_col" />
 
     <ImageButton
         android:id="@+id/toggleDirectionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@drawable/right_arrow"
-        android:contentDescription="Change orientation" />
+        android:contentDescription="Change orientation"
+        android:src="@drawable/right_arrow" />
 </LinearLayout>

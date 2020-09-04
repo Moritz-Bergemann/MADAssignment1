@@ -50,7 +50,6 @@ public class GameData {
 
         Country testA = new Country();
         countryList.add(testA);
-        countryList.add(testA);
         testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
@@ -69,6 +68,27 @@ public class GameData {
         testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
         testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
         testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+
+        Country testA2 = new Country();
+        countryList.add(testA2);
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+
+        Country testB2 = new Country();
+        countryList.add(testB2);
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+
+        Country testC2 = new Country();
+        countryList.add(testC2);
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
 
         return countryList;
     }

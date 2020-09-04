@@ -1,14 +1,51 @@
 package com.moritz.android.madassignment1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 public class MainActivity extends AppCompatActivity {
+    FrameLayout mTopBar;
+    FrameLayout mMainContent;
+    FrameLayout mBottomBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mTopBar = findViewById(R.id.topBar); //FIXME these might be redundant
+        mMainContent = findViewById(R.id.mainContent);
+        mBottomBar = findViewById(R.id.bottomBar);
+
+        //** FRAGMENT SETUP **
+        FragmentManager fm = getSupportFragmentManager();
+
+        //Getting fragments currently contained in containers (if there are any)
+        Fragment topFragment = fm.findFragmentById(R.id.topBar);
+        Fragment mainFragment = fm.findFragmentById(R.id.mainContent);
+        Fragment bottomFragment = fm.findFragmentById(R.id.bottomBar);
+
+        //Initialising top fragment to layout manager
+        if (topFragment == null) {
+            topFragment = LayoutSelector.newInstance();
+            fm.beginTransaction().add(R.id.topBar, topFragment).commit();
+        }
+
+        //Initialising middle fragment to country selector
+        if (mainFragment == null) {
+//            mainFragment = LayoutSelector.newInstance();
+//            fm.beginTransaction().add(R.id.mainContent, mainFragment);
+            //TODO
+        }
+
+        //Initialising bottom fragment to score tracker
+        if (bottomFragment == null) {
+            bottomFragment = ScoreTracker.newInstance();
+            fm.beginTransaction().add(R.id.bottomBar, bottomFragment).commit();
+        }
     }
 }
