@@ -1,5 +1,7 @@
 package com.moritz.android.madassignment1.model;
 
+import com.moritz.android.madassignment1.R;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -48,42 +50,42 @@ public class GameData {
     private static List<Country> generateQuestions() {
         List<Country> countryList = new LinkedList<>();
 
-        Country testA = new Country();
+        Country testA = new Country("testA", R.drawable.flagtesta);
         countryList.add(testA);
         testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
 
-        Country testB = new Country();
+        Country testB = new Country("testB", R.drawable.flagtestb);
         countryList.add(testB);
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
 
-        Country testC = new Country();
+        Country testC = new Country("testC", R.drawable.flagtestc);
         countryList.add(testC);
         testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
         testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
         testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
         testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
 
-        Country testA2 = new Country();
+        Country testA2 = new Country("testA2", R.drawable.flagtesta2);
         countryList.add(testA2);
         testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
         testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
 
-        Country testB2 = new Country();
+        Country testB2 = new Country("testB2", R.drawable.flagtestb2);
         countryList.add(testB2);
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
         testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
 
-        Country testC2 = new Country();
+        Country testC2 = new Country("testC2", R.drawable.flagtestc2);
         countryList.add(testC2);
         testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
         testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
@@ -91,6 +93,14 @@ public class GameData {
         testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
 
         return countryList;
+    }
+
+    public Country getCountry(int position) {
+        return countries.get(position);
+    }
+
+    public int getNumCountries() {
+        return countries.size();
     }
 
     public int getPlayerPoints() {

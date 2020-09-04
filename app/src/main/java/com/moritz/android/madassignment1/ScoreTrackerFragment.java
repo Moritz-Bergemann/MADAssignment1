@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ScoreTracker#newInstance} factory method to
+ * Use the {@link ScoreTrackerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScoreTracker extends Fragment {
+public class ScoreTrackerFragment extends Fragment {
 
-    public ScoreTracker() {
+    public ScoreTrackerFragment() {
         // Required empty public constructor
     }
 
@@ -28,8 +28,8 @@ public class ScoreTracker extends Fragment {
      * @return A new instance of fragment ScoreTracker.
      */
     // TODO: Rename and change types and number of parameters
-    public static ScoreTracker newInstance() {
-        return new ScoreTracker();
+    public static ScoreTrackerFragment newInstance() {
+        return new ScoreTrackerFragment();
     }
 
     @Override

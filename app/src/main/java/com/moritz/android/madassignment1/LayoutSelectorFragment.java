@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LayoutSelector#newInstance} factory method to
+ * Use the {@link LayoutSelectorFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LayoutSelector extends Fragment {
-    public LayoutSelector() {
+public class LayoutSelectorFragment extends Fragment {
+    public LayoutSelectorFragment() {
         // Required empty public constructor
     }
 
@@ -24,8 +24,8 @@ public class LayoutSelector extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      */
-    public static LayoutSelector newInstance() {
-        return new LayoutSelector();
+    public static LayoutSelectorFragment newInstance() {
+        return new LayoutSelectorFragment();
     }
 
     @Override

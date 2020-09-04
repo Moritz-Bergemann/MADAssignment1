@@ -31,20 +31,19 @@ public class MainActivity extends AppCompatActivity {
 
         //Initialising top fragment to layout manager
         if (topFragment == null) {
-            topFragment = LayoutSelector.newInstance();
+            topFragment = LayoutSelectorFragment.newInstance();
             fm.beginTransaction().add(R.id.topBar, topFragment).commit();
         }
 
         //Initialising middle fragment to country selector
         if (mainFragment == null) {
-//            mainFragment = LayoutSelector.newInstance();
-//            fm.beginTransaction().add(R.id.mainContent, mainFragment);
-            //TODO
+            mainFragment = CountrySelectorFragment.newInstance();
+            fm.beginTransaction().add(R.id.mainContent, mainFragment).commit();
         }
 
         //Initialising bottom fragment to score tracker
         if (bottomFragment == null) {
-            bottomFragment = ScoreTracker.newInstance();
+            bottomFragment = ScoreTrackerFragment.newInstance();
             fm.beginTransaction().add(R.id.bottomBar, bottomFragment).commit();
         }
     }
