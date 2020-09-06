@@ -48,7 +48,7 @@ public class LayoutSelectorFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        UIViewModel uiViewModel = new ViewModelProvider(requireActivity()).get(UIViewModel.class);
+        UIData uiData = UIData.getInstance();
 
         mOneButton = view.findViewById(R.id.oneButton);
         mTwoButton = view.findViewById(R.id.twoButton);
@@ -59,29 +59,29 @@ public class LayoutSelectorFragment extends Fragment {
         //Make the different buttons set the designated number of rows/columns to their
         // corresponding values (listened to by activity displaying them)
         mOneButton.setOnClickListener((View v) -> {
-            uiViewModel.setSpan(1);
+            uiData.setSpan(1);
         });
 
         mTwoButton.setOnClickListener((View v) -> {
-            uiViewModel.setSpan(2);
+            uiData.setSpan(2);
         });
 
         mThreeButton.setOnClickListener((View v) -> {
-            uiViewModel.setSpan(3);
+            uiData.setSpan(3);
         });
 
         //Making orientation button switch the orientation
         mOrientationButton.setOnClickListener((View v) -> {
             //Switch orientation
-            if (uiViewModel.getOrientation().getValue() == GridLayoutManager.HORIZONTAL) {
-                uiViewModel.setOrientation(GridLayoutManager.VERTICAL);
+            if (uiData.getOrientation().getValue() == GridLayoutManager.HORIZONTAL) {
+                uiData.setOrientation(GridLayoutManager.VERTICAL);
             } else {
-                uiViewModel.setOrientation(GridLayoutManager.HORIZONTAL);
+                uiData.setOrientation(GridLayoutManager.HORIZONTAL);
             }
         });
 
         //** SETTING BUTTON VISUALS **
-        uiViewModel.getOrientation().observe(getViewLifecycleOwner(), orientation -> {
+        uiData.getOrientation().observe(getViewLifecycleOwner(), orientation -> {
             if (orientation == GridLayoutManager.HORIZONTAL) {
                 mTwoButton.setImageResource(R.drawable.two_row);
                 mThreeButton.setImageResource(R.drawable.three_row);

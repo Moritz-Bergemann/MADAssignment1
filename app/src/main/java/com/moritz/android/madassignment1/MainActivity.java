@@ -48,4 +48,11 @@ public class MainActivity extends AppCompatActivity {
             fm.beginTransaction().add(R.id.bottomBar, bottomFragment).commit();
         }
     }
+
+    public void goToCountry(int countryPosition) {
+        Fragment questionSelectorFragment = QuestionSelectorFragment.newInstance(countryPosition);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainContent,
+                questionSelectorFragment).commit();
+    }
 }

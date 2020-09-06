@@ -43,6 +43,8 @@ public class GameData {
         countries = generateQuestions();
     }
 
+    Class test;
+
     /**
      * Generates hard-coded questions for game for various countries.
      * @return generated list of questions
