@@ -5,8 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,10 +28,6 @@ public class LayoutSelectorFragment extends Fragment {
     ImageButton mThreeButton;
     ImageButton mOrientationButton;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     */
     public static LayoutSelectorFragment newInstance() {
         return new LayoutSelectorFragment();
     }
@@ -63,30 +59,30 @@ public class LayoutSelectorFragment extends Fragment {
         //Make the different buttons set the designated number of rows/columns to their
         // corresponding values (listened to by activity displaying them)
         mOneButton.setOnClickListener((View v) -> {
-            uiViewModel.setSize(1);
+            uiViewModel.setSpan(1);
         });
 
-        mOneButton.setOnClickListener((View v) -> {
-            uiViewModel.setSize(2);
+        mTwoButton.setOnClickListener((View v) -> {
+            uiViewModel.setSpan(2);
         });
 
-        mOneButton.setOnClickListener((View v) -> {
-            uiViewModel.setSize(3);
+        mThreeButton.setOnClickListener((View v) -> {
+            uiViewModel.setSpan(3);
         });
 
         //Making orientation button switch the orientation
         mOrientationButton.setOnClickListener((View v) -> {
             //Switch orientation
-            if (uiViewModel.getOrientation().getValue() == UIViewModel.Orientation.HORIZONTAL) {
-                uiViewModel.setOrientation(UIViewModel.Orientation.VERTICAL);
+            if (uiViewModel.getOrientation().getValue() == GridLayoutManager.HORIZONTAL) {
+                uiViewModel.setOrientation(GridLayoutManager.VERTICAL);
             } else {
-                uiViewModel.setOrientation(UIViewModel.Orientation.HORIZONTAL);
+                uiViewModel.setOrientation(GridLayoutManager.HORIZONTAL);
             }
         });
 
         //** SETTING BUTTON VISUALS **
-        uiViewModel.getOrientation().observe(requireActivity(), orientation -> {
-            if (orientation == UIViewModel.Orientation.HORIZONTAL) {
+        uiViewModel.getOrientation().observe(getViewLifecycleOwner(), orientation -> {
+            if (orientation == GridLayoutManager.HORIZONTAL) {
                 mTwoButton.setImageResource(R.drawable.two_row);
                 mThreeButton.setImageResource(R.drawable.three_row);
                 mOrientationButton.setImageResource(R.drawable.right_arrow);

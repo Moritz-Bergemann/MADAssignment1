@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -65,6 +67,24 @@ public class CountrySelectorFragment extends Fragment {
 
         //Setting custom country adapter
         mRecycler.setAdapter(new CountryAdapter(GameData.getInstance(), getActivity()));
+
+        //** RESPONDING TO LAYOUT CHANGES **
+        //Getting ViewModel holding layout information
+        UIViewModel uiViewModel = new ViewModelProvider(requireActivity()).get(UIViewModel.class);
+
+        //Observing orientation change
+        uiViewModel.getOrientation().observe(getViewLifecycleOwner(), orientation -> {
+            int span = uiViewModel.getSpan().getValue();
+
+            mRecycler.setLayoutManager(new GridLayoutManager(requireActivity(), span, orientation, false));
+        });
+
+        //Observing span change
+        uiViewModel.getSpan().observe(getViewLifecycleOwner(), span -> {
+            int orientation = uiViewModel.getOrientation().getValue();
+
+            mRecycler.setLayoutManager(new GridLayoutManager(requireActivity(), span, orientation, false));
+        });
     }
 
     //FIXME is there a way to make this adapter the same as the one for questions?

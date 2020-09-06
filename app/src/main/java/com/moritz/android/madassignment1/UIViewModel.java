@@ -1,57 +1,54 @@
 package com.moritz.android.madassignment1;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 /**
  * ViewModel class for UI components - used for communication between fragments regarding UI layout.
  */
 public class UIViewModel extends ViewModel {
-    public static final int DEFAULT_SIZE = 2;
-
-    public enum Orientation {
-        HORIZONTAL,
-        VERTICAL
-    }
+    public static final int DEFAULT_SPAN = 2;
+    public static final int DEFAULT_ORIENTATION = GridLayoutManager.VERTICAL;
 
     //** SIZE OF SCROLLABLE RECYCLERVIEW **
-    private MutableLiveData<Integer> mSize;
+    private MutableLiveData<Integer> mSpan;
 
-    public LiveData<Integer> getSize() {
-        initialiseSize();
+    public LiveData<Integer> getSpan() {
+        initialiseSpan();
 
-        return mSize;
+        return mSpan;
     }
 
-    public void setSize(int size) {
-        initialiseSize();
+    public void setSpan(int span) {
+        initialiseSpan();
 
-        mSize.setValue(size);
+        mSpan.setValue(span);
     }
 
-    private void initialiseSize() {
-        if (mSize == null) {
-            mSize = new MutableLiveData<>();
-            mSize.setValue(1);
+    private void initialiseSpan() {
+        if (mSpan == null) {
+            mSpan = new MutableLiveData<>();
+            mSpan.setValue(DEFAULT_SPAN);
         }
     }
 
     //** ORIENTATION OF RECYCLERVIEW **
-    private MutableLiveData<Orientation> mOrientation;
+    private MutableLiveData<Integer> mOrientation;
 
-    public LiveData<Orientation> getOrientation() {
+    public LiveData<Integer> getOrientation() {
         initialiseOrientation();
 
         return mOrientation;
     }
 
-    public void setOrientation(Orientation orientation) {
+    public void setOrientation(int orientation) {
         initialiseOrientation();
+
+        if (orientation != GridLayoutManager.HORIZONTAL && orientation != GridLayoutManager.VERTICAL) {
+            throw new IllegalArgumentException("Orientation must be either horizontal or vertical!");
+        }
 
         mOrientation.setValue(orientation);
     }
@@ -59,7 +56,7 @@ public class UIViewModel extends ViewModel {
     private void initialiseOrientation() {
         if (mOrientation == null) {
             mOrientation = new MutableLiveData<>();
-            mOrientation.setValue(Orientation.VERTICAL);
+            mOrientation.setValue(DEFAULT_ORIENTATION);
         }
     }
 }
