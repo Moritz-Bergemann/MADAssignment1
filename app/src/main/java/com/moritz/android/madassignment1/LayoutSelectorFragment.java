@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -58,9 +59,42 @@ public class LayoutSelectorFragment extends Fragment {
         mThreeButton = view.findViewById(R.id.threeButton);
         mOrientationButton = view.findViewById(R.id.orientationButton);
 
+        //** SETTING BUTTON ACTIONS **
+        //Make the different buttons set the designated number of rows/columns to their
+        // corresponding values (listened to by activity displaying them)
         mOneButton.setOnClickListener((View v) -> {
-
+            uiViewModel.setSize(1);
         });
 
+        mOneButton.setOnClickListener((View v) -> {
+            uiViewModel.setSize(2);
+        });
+
+        mOneButton.setOnClickListener((View v) -> {
+            uiViewModel.setSize(3);
+        });
+
+        //Making orientation button switch the orientation
+        mOrientationButton.setOnClickListener((View v) -> {
+            //Switch orientation
+            if (uiViewModel.getOrientation().getValue() == UIViewModel.Orientation.HORIZONTAL) {
+                uiViewModel.setOrientation(UIViewModel.Orientation.VERTICAL);
+            } else {
+                uiViewModel.setOrientation(UIViewModel.Orientation.HORIZONTAL);
+            }
+        });
+
+        //** SETTING BUTTON VISUALS **
+        uiViewModel.getOrientation().observe(requireActivity(), orientation -> {
+            if (orientation == UIViewModel.Orientation.HORIZONTAL) {
+                mTwoButton.setImageResource(R.drawable.two_row);
+                mThreeButton.setImageResource(R.drawable.three_row);
+                mOrientationButton.setImageResource(R.drawable.right_arrow);
+            } else { //If orientation is vertical
+                mTwoButton.setImageResource(R.drawable.two_col);
+                mThreeButton.setImageResource(R.drawable.three_col);
+                mOrientationButton.setImageResource(R.drawable.down_arrow);
+            }
+        });
     }
 }
