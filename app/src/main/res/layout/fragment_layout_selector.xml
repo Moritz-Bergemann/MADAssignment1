@@ -41,13 +41,13 @@
         android:scaleType="fitCenter"
         android:src="@drawable/three_col"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/toggleDirectionButton"
+        app:layout_constraintEnd_toStartOf="@+id/orientationButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/twoButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/toggleDirectionButton"
+        android:id="@+id/orientationButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="Change orientation"
