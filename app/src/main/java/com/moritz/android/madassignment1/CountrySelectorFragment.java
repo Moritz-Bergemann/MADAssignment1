@@ -87,13 +87,10 @@ public class CountrySelectorFragment extends SelectorFragment {
                 mFlagImage.setImageResource(country.getFlagResourceID());
 
                 itemView.setOnClickListener(view -> {
-                    if (getActivity() instanceof MainActivity) {
+                    if (getActivity() instanceof CountryActivity) {
                         GameData.getInstance().setCurCountry(country);
-                        ((MainActivity) getActivity()).goToQuestionSelectorFragment();
+                        ((CountryActivity) getActivity()).goToQuestionSelector();
                     }
-
-//                        Toast.makeText(mActivity, String.format("You pressed %s!", //TODO remove me
-//                                mCountry.getName()), Toast.LENGTH_SHORT).show();
                 });
             }
         }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moritz.android.madassignment1.model.GameData;
@@ -72,6 +73,10 @@ public class QuestionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //Setting question text
+        TextView questionText = view.findViewById(R.id.questionText);
+        questionText.setText(mQuestion.getQuestion());
 
         //Setting listeners for answers (1 and 2 must always exist)
         int[] buttonIds = new int[]{R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4};

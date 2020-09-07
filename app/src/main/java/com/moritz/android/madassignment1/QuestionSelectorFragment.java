@@ -109,11 +109,11 @@ public class QuestionSelectorFragment extends SelectorFragment {
                 //TODO actual clicking on question stuff
                 itemView.setOnClickListener(clickedView -> {
 
-                    if (getActivity() instanceof MainActivity) {
+                    if (getActivity() instanceof QuestionActivity) {
                         GameData.getInstance().setCurQuestion(mQuestion);
 
                         GameData.getInstance().setCurQuestion(mQuestion);
-                        ((MainActivity) getActivity()).goToQuestionFragment();
+                        ((QuestionActivity) getActivity()).goToQuestion();
                     }
                 });
             }

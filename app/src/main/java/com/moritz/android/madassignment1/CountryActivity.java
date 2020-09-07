@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.moritz.android.madassignment1.model.Question;
+
+public class CountryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,36 +43,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Fragment mainFragment = getSupportFragmentManager().findFragmentById(R.id.mainContent);
-        if (mainFragment instanceof QuestionFragment) {
-            goToQuestionSelectorFragment();
-        } else if (mainFragment instanceof QuestionSelectorFragment) {
-            goToCountrySelectorFragment();
-        } else { //If in CountrySelectorFragment, just do normal back
-            super.onBackPressed();
-        }
-    }
-
-    public void goToCountrySelectorFragment() {
-        Fragment countrySelectorFragment = CountrySelectorFragment.newInstance();
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContent,
-                countrySelectorFragment).commit();
-    }
-
-    public void goToQuestionSelectorFragment() {
-        Fragment questionSelectorFragment = QuestionSelectorFragment.newInstance();
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContent,
-                questionSelectorFragment).commit();
-    }
-
-    public void goToQuestionFragment() {
-        Fragment questionFragment = QuestionFragment.newInstance();
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContent,
-            questionFragment).commit();
+    public void goToQuestionSelector() {
+        //Start the question activity
+        startActivity(QuestionActivity.makeIntent(this));
     }
 }
