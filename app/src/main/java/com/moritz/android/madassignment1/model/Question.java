@@ -26,6 +26,10 @@ public class Question {
         return question;
     }
 
+    public String[] getChoices() {
+        return choices;
+    }
+
     public int getPoints() {
         return points;
     }

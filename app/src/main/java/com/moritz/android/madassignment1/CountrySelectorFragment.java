@@ -6,15 +6,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.moritz.android.madassignment1.model.Country;
 import com.moritz.android.madassignment1.model.GameData;
@@ -68,7 +65,7 @@ public class CountrySelectorFragment extends SelectorFragment {
 
         @Override
         public void onBindViewHolder(@NonNull CountryViewHolder holder, int position) {
-            holder.bind(mGameData.getCountry(position), position);
+            holder.bind(mGameData.getCountry(position));
         }
 
         @Override
@@ -85,7 +82,7 @@ public class CountrySelectorFragment extends SelectorFragment {
                 mFlagImage = itemView.findViewById(R.id.flagImage);
             }
 
-            public void bind(Country country, int position) {
+            public void bind(Country country) {
                 mCountry = country;
                 mFlagImage.setImageResource(country.getFlagResourceID());
 
@@ -93,10 +90,11 @@ public class CountrySelectorFragment extends SelectorFragment {
                     @Override
                     public void onClick(View view) {
                         if (getActivity() instanceof MainActivity) {
-                            ((MainActivity) getActivity()).goToCountry(position);
+                            GameData.getInstance().setCurCountry(country);
+                            ((MainActivity) getActivity()).goToQuestionSelectorFragment();
                         }
 
-//                        Toast.makeText(mActivity, String.format("You pressed %s!",
+//                        Toast.makeText(mActivity, String.format("You pressed %s!", //TODO remove me
 //                                mCountry.getName()), Toast.LENGTH_SHORT).show();
                     }
                 });

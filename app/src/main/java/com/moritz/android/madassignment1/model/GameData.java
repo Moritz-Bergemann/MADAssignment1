@@ -30,6 +30,9 @@ public class GameData {
     private int targetPoints;
     private int seedPoints;
 
+    private Country curCountry;
+    private Question curQuestion;
+
     List<Country> countries;
 
     private GameData() {
@@ -43,7 +46,72 @@ public class GameData {
         countries = generateQuestions();
     }
 
-    Class test;
+
+    public Country getCountry(int position) {
+        return countries.get(position);
+    }
+
+    public int getNumCountries() {
+        return countries.size();
+    }
+
+    public Country getCurCountry() {
+        return curCountry;
+    }
+
+    public void setCurCountry(Country curCountry) {
+        this.curCountry = curCountry;
+    }
+
+    public Question getCurQuestion() {
+        return curQuestion;
+    }
+
+    public void setCurQuestion(Question curQuestion) {
+        this.curQuestion = curQuestion;
+    }
+
+    public int getPlayerPoints() {
+        return playerPoints;
+    }
+
+    public void setPlayerPoints(int playerPoints) {
+        this.playerPoints = playerPoints;
+    }
+
+    public int getTargetPoints() {
+        return targetPoints;
+    }
+
+    public int getSeedPoints() {
+        return seedPoints;
+    }
+
+    public boolean hasWon() {
+        return playerPoints >= targetPoints;
+    }
+
+    /** FIXME self-reference - retrieved from OOSE assignment
+     * Creates a random integer between the imported min and max
+     * @param min minimum value for random integer
+     * @param max maximum value for random integer
+     * @return random integer
+     */
+    private static int randBetween(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("Lower bound cannot be greater than upper bound");
+        }
+
+        //Returning value directly if min & max equal (since rand.nextInt cannot take in negative integers)
+        if (min == max) {
+            return min;
+        }
+
+        Random rand = new Random();
+
+        //Getting number by setting lower bound as min & upper bound as max (standard bound is between 0 & import - 1)
+        return rand.nextInt(max - min) + min + 1;
+    }
 
     /**
      * Generates hard-coded questions for game for various countries.
@@ -95,55 +163,5 @@ public class GameData {
         testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
 
         return countryList;
-    }
-
-    public Country getCountry(int position) {
-        return countries.get(position);
-    }
-
-    public int getNumCountries() {
-        return countries.size();
-    }
-
-    public int getPlayerPoints() {
-        return playerPoints;
-    }
-
-    public void setPlayerPoints(int playerPoints) {
-        this.playerPoints = playerPoints;
-    }
-
-    public int getTargetPoints() {
-        return targetPoints;
-    }
-
-    public int getSeedPoints() {
-        return seedPoints;
-    }
-
-    public boolean hasWon() {
-        return playerPoints >= targetPoints;
-    }
-
-    /** FIXME self-reference - retrieved from OOSE assignment
-     * Creates a random integer between the imported min and max
-     * @param min minimum value for random integer
-     * @param max maximum value for random integer
-     * @return random integer
-     */
-    private static int randBetween(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Lower bound cannot be greater than upper bound");
-        }
-
-        //Returning value directly if min & max equal (since rand.nextInt cannot take in negative integers)
-        if (min == max) {
-            return min;
-        }
-
-        Random rand = new Random();
-
-        //Getting number by setting lower bound as min & upper bound as max (standard bound is between 0 & import - 1)
-        return rand.nextInt(max - min) + min + 1;
     }
 }

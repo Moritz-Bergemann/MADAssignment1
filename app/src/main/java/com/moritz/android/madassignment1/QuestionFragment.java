@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.moritz.android.madassignment1.model.GameData;
+import com.moritz.android.madassignment1.model.Question;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link QuestionFragment#newInstance} factory method to
@@ -19,15 +22,7 @@ import android.widget.Toast;
  */
 public class QuestionFragment extends Fragment {
 
-    private static final String ARG_QUESTION = "question";
-    private static final String ARG_SPECIAL = "special";
-    private static final String ARG_ANSWERS = "answers";
-    private static final String ARG_CORRECT_ANSWER = "correctAnswer";
-
-    String mQuestion;
-    boolean mSpecial;
-    String[] mAnswers;
-    int mCorrectAnswer;
+    private Question mQuestion;
 
     public QuestionFragment() {
         // Required empty public constructor
@@ -39,38 +34,25 @@ public class QuestionFragment extends Fragment {
      *
      * @return A new instance of fragment QuestionFragment.
      */
-    public static QuestionFragment newInstance(String question, boolean special, String[] answers, int correctAnswer) {
-        QuestionFragment fragment = new QuestionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_QUESTION, question);
-        args.putBoolean(ARG_SPECIAL, special);
-        args.putStringArray(ARG_ANSWERS, answers);
-        args.putInt(ARG_CORRECT_ANSWER, correctAnswer);
-        fragment.setArguments(args);
-        return fragment;
+    public static QuestionFragment newInstance() {
+        return new QuestionFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mQuestion = getArguments().getString(ARG_QUESTION);
-            mSpecial = getArguments().getBoolean(ARG_SPECIAL);
-            mAnswers = getArguments().getStringArray(ARG_ANSWERS);
-            mCorrectAnswer = getArguments().getInt(ARG_CORRECT_ANSWER);
-        } else {
-            throw new IllegalArgumentException("Arguments required");
-        }
+
+        mQuestion = GameData.getInstance().getCurQuestion();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         int layoutId = -1;
 
         //FIXME making the layout get filled automatically would have been a way nicer solution, but the assignment spec specifically says different 'layouts'. This makes me unhappy
-        switch (mQuestion.length()) {
+        switch (mQuestion.getChoices().length) {
             case 2:
                 layoutId = R.layout.fragment_question_2;
                 break;
@@ -94,19 +76,21 @@ public class QuestionFragment extends Fragment {
         //Setting listeners for answers (1 and 2 must always exist)
         int[] buttonIds = new int[]{R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4};
 
-        int ii = 0;
+        int ii = 0; //Tracking the current question element
         for (int id : buttonIds) {
             Button answerButton = view.findViewById(id);
             if (answerButton != null) {
-                answerButton.setText(mAnswers[ii]);
+                answerButton.setText(mQuestion.getChoices()[ii]);
 
                 //If this is the right answer
-                if (ii == mCorrectAnswer) {
+                if (mQuestion.isCorrectChoice(ii)) {
                     answerButton.setOnClickListener(clickedView -> {
                         Toast.makeText(getContext(), "Right answer!", Toast.LENGTH_SHORT).show(); //TODO
                     });
                 } else { //If this was a wrong answer
-                    Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show(); //TODO
+                    answerButton.setOnClickListener(clickedView -> {
+                        Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show(); //TODO
+                    });
                 }
 
                 ii++;

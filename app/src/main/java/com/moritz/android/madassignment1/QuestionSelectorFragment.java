@@ -25,8 +25,6 @@ import java.util.Locale;
  * create an instance of this fragment.
  */
 public class QuestionSelectorFragment extends SelectorFragment {
-    private static final String ARG_QUESTION_POSITION = "questionPosition";
-
     private Country mCountry;
 
     public QuestionSelectorFragment() {
@@ -40,24 +38,15 @@ public class QuestionSelectorFragment extends SelectorFragment {
         return inflater.inflate(R.layout.fragment_question_selector, container, false);
     }
 
-    public static QuestionSelectorFragment newInstance(int countryPosition) {
-        Bundle args = new Bundle();
-        args.putInt(ARG_QUESTION_POSITION, countryPosition);
-        QuestionSelectorFragment fragment = new QuestionSelectorFragment();
-        fragment.setArguments(args);
-
-        return fragment;
+    public static QuestionSelectorFragment newInstance() {
+        return new QuestionSelectorFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments() != null) {
-             int questionPosition = getArguments().getInt(ARG_QUESTION_POSITION);
-
-            mCountry = GameData.getInstance().getCountry(questionPosition);
-        }
+        mCountry = GameData.getInstance().getCurCountry();
     }
 
     @Override
@@ -118,6 +107,15 @@ public class QuestionSelectorFragment extends SelectorFragment {
                 mPenaltyValue.setText(String.format(Locale.US, "Q%d", question.getPenalty()));
 
                 //TODO actual clicking on question stuff
+                itemView.setOnClickListener(clickedView -> {
+
+                    if (getActivity() instanceof MainActivity) {
+                        GameData.getInstance().setCurQuestion(mQuestion);
+
+                        GameData.getInstance().setCurQuestion(mQuestion);
+                        ((MainActivity) getActivity()).goToQuestionFragment();
+                    }
+                });
             }
         }
     }
