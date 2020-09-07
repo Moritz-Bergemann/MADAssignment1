@@ -122,45 +122,45 @@ public class GameData {
 
         Country testA = new Country("testA", R.drawable.flagtesta);
         countryList.add(testA);
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
 
         Country testB = new Country("testB", R.drawable.flagtestb);
         countryList.add(testB);
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
 
         Country testC = new Country("testC", R.drawable.flagtestc);
         countryList.add(testC);
-        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
-        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
-        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
-        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
+        testC.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
 
         Country testA2 = new Country("testA2", R.drawable.flagtesta2);
         countryList.add(testA2);
-        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
-        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
-        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
-        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10));
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA2.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
 
         Country testB2 = new Country("testB2", R.drawable.flagtestb2);
         countryList.add(testB2);
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
-        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
+        testB.addQuestion(new Question("Select B", new String[]{"A", "B", "C", "D"}, 1, 10, 10, false));
 
         Country testC2 = new Country("testC2", R.drawable.flagtestc2);
         countryList.add(testC2);
-        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
-        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
-        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
-        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10));
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
+        testC2.addQuestion(new Question("Select C", new String[]{"A", "B", "C", "D"}, 2, 10, 10, false));
 
         return countryList;
     }
