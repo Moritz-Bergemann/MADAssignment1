@@ -1,5 +1,8 @@
 package com.moritz.android.madassignment1.model;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.moritz.android.madassignment1.R;
 
 import java.util.LinkedList;
@@ -26,9 +29,10 @@ public class GameData {
     public static final int TARGET_POINTS_MIN = 6;
     public static final int TARGET_POINTS_MAX = 10;
 
-    private int playerPoints;
+    private MutableLiveData<Integer> curPoints;
     private int targetPoints;
     private int seedPoints;
+    private int specialPoints; //Special points can be 'redeemed' to increase the points given by a category by 10
 
     private Country curCountry;
     private Question curQuestion;
@@ -37,15 +41,17 @@ public class GameData {
 
     private GameData() {
         //Randomly select seed points (& therefore initial score)
-        playerPoints = seedPoints = randBetween(SEED_POINTS_MIN, SEED_POINTS_MAX);
+        curPoints = new MutableLiveData<>();
+        curPoints.setValue(randBetween(SEED_POINTS_MIN, SEED_POINTS_MAX));
 
         //Randomly select target points
         targetPoints = randBetween(TARGET_POINTS_MIN, TARGET_POINTS_MAX);
 
         //Generating questions information
         countries = generateQuestions();
-    }
 
+        specialPoints = 0;
+    }
 
     public Country getCountry(int position) {
         return countries.get(position);
@@ -71,12 +77,24 @@ public class GameData {
         this.curQuestion = curQuestion;
     }
 
-    public int getPlayerPoints() {
-        return playerPoints;
+    public LiveData<Integer> getCurPoints() {
+        return curPoints;
     }
 
-    public void setPlayerPoints(int playerPoints) {
-        this.playerPoints = playerPoints;
+    public void setCurPoints(int curPoints) {
+        this.curPoints.setValue(curPoints);
+    }
+
+    public int getSpecialPoints() {
+        return specialPoints;
+    }
+
+    /**
+     * Adds a special point for the player (should be called when the player correctly answers a
+     * special question
+     */
+    public void addSpecialPoint() {
+        specialPoints++;
     }
 
     public int getTargetPoints() {
@@ -88,7 +106,7 @@ public class GameData {
     }
 
     public boolean hasWon() {
-        return playerPoints >= targetPoints;
+        return curPoints.getValue() >= targetPoints;
     }
 
     /** FIXME self-reference - retrieved from OOSE assignment
