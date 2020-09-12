@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class CountryActivity extends AppCompatActivity {
@@ -43,5 +45,10 @@ public class CountryActivity extends AppCompatActivity {
     public void goToQuestionSelector() {
         //Start the question activity
         startActivity(QuestionsActivity.makeIntent(this));
+    }
+
+    public static Intent makeIntent(Activity callingActivity) {
+        Intent intent = new Intent(callingActivity, CountryActivity.class);
+        return intent;
     }
 }

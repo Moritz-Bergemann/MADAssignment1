@@ -83,13 +83,13 @@ public class LayoutSelectorFragment extends Fragment {
         //** SETTING BUTTON VISUALS **
         uiData.getOrientation().observe(getViewLifecycleOwner(), orientation -> {
             if (orientation == GridLayoutManager.HORIZONTAL) {
-                mTwoButton.setImageResource(R.drawable.two_row);
-                mThreeButton.setImageResource(R.drawable.three_row);
-                mOrientationButton.setImageResource(R.drawable.right_arrow);
+                mTwoButton.setImageResource(R.drawable.square_ver_two);
+                mThreeButton.setImageResource(R.drawable.square_ver_three);
+                mOrientationButton.setImageResource(R.drawable.arrow_right);
             } else { //If orientation is vertical
-                mTwoButton.setImageResource(R.drawable.two_col);
-                mThreeButton.setImageResource(R.drawable.three_col);
-                mOrientationButton.setImageResource(R.drawable.down_arrow);
+                mTwoButton.setImageResource(R.drawable.square_hor_two);
+                mThreeButton.setImageResource(R.drawable.square_hor_three);
+                mOrientationButton.setImageResource(R.drawable.arrow_down);
             }
         });
     }
