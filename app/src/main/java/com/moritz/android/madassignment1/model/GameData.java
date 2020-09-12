@@ -156,10 +156,10 @@ public class GameData {
 
         Country testA = new Country("testA", R.drawable.flagtesta);
         countryList.add(testA);
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, true));
-        testA.addQuestion(new Question("Select A", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA.addQuestion(new Question("Select A (one)", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA.addQuestion(new Question("Select A (two)", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
+        testA.addQuestion(new Question("Select A (three)", new String[]{"A", "B", "C", "D"}, 0, 10, 10, true));
+        testA.addQuestion(new Question("Select A (four)", new String[]{"A", "B", "C", "D"}, 0, 10, 10, false));
 
         Country testB = new Country("testB", R.drawable.flagtestb);
         countryList.add(testB);

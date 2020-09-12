@@ -30,6 +30,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
+        android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/bottomBar"
         app:layout_constraintEnd_toStartOf="@+id/questionContent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -49,9 +50,7 @@
         app:layout_constraintEnd_toEndOf="@+id/mainContent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainContent">
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/mainContent"></FrameLayout>
 
     <FrameLayout
         android:id="@+id/questionContent"
@@ -68,7 +67,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/mainContent"
-        app:layout_constraintTop_toBottomOf="@+id/topBar">
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/topBar"></FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

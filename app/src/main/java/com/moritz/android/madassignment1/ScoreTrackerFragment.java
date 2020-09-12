@@ -80,9 +80,6 @@ public class ScoreTrackerFragment extends Fragment {
                 } else {
                     activity.goToQuestionSelector();
                 }
-
-                //Hide the 'previous' button again
-                UIData.getInstance().setShowPreviousButton(false);
             }
         });
     }

@@ -3,6 +3,7 @@ package com.moritz.android.madassignment1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +11,13 @@ import android.os.Bundle;
 import android.view.View;
 
 public class QuestionsActivity extends AppCompatActivity {
+
+    private static final String TAG_QUESTION_FRAGMENT = "QUESTION_FRAGMENT";
+
+    Fragment mTopFragment;
+    Fragment mQuestionSelectorFragment;
+    Fragment mBottomFragment;
+    Fragment mQuestionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,52 +28,91 @@ public class QuestionsActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
 
         //Getting fragments currently contained in containers (if there are any)
-        Fragment topFragment = fm.findFragmentById(R.id.topBar);
-        Fragment mainFragment = fm.findFragmentById(R.id.mainContent);
-        Fragment bottomFragment = fm.findFragmentById(R.id.bottomBar);
+        mTopFragment = fm.findFragmentById(R.id.topBar);
+        mQuestionSelectorFragment = fm.findFragmentById(R.id.mainContent);
+        mBottomFragment = fm.findFragmentById(R.id.bottomBar);
+        mQuestionFragment = null;
 
         //Initialising top fragment to layout manager
-        if (topFragment == null) {
-            topFragment = LayoutSelectorFragment.newInstance();
-            fm.beginTransaction().add(R.id.topBar, topFragment).commit();
+        if (mTopFragment == null) {
+            mTopFragment = LayoutSelectorFragment.newInstance();
+            fm.beginTransaction().add(R.id.topBar, mTopFragment).commit();
         }
 
         //Initialising middle fragment to country selector
-        if (mainFragment == null) {
-            mainFragment = QuestionSelectorFragment.newInstance();
-            fm.beginTransaction().add(R.id.mainContent, mainFragment).commit();
+        if (mQuestionSelectorFragment == null) {
+            mQuestionSelectorFragment = QuestionSelectorFragment.newInstance();
+            fm.beginTransaction().add(R.id.mainContent, mQuestionSelectorFragment, TAG_QUESTION_FRAGMENT).commit();
+        } else if (mQuestionSelectorFragment instanceof QuestionFragment) { //If main fragment is actually question picking fragment
+            //Set the current fragment in main slot to question fragment
+            mQuestionFragment = mQuestionSelectorFragment;
+
+            //Find the actual question selector fragment (currently hidden)
+            mQuestionSelectorFragment = fm.findFragmentByTag(TAG_QUESTION_FRAGMENT);
+        }
+
+        if (mQuestionFragment == null) { //If no question fragment has been found
+            //See if question fragment exists in special question fragment container (only on tablets)
+            mQuestionFragment = fm.findFragmentById(R.id.questionContent);
         }
 
         //Initialising bottom fragment to score tracker
-        if (bottomFragment == null) {
-            bottomFragment = ScoreTrackerFragment.newInstance();
-            fm.beginTransaction().add(R.id.bottomBar, bottomFragment).commit();
+        if (mBottomFragment == null) {
+            mBottomFragment = ScoreTrackerFragment.newInstance();
+            fm.beginTransaction().add(R.id.bottomBar, mBottomFragment).commit();
         }
     }
 
     public void goToQuestion() {
-        //Making question fragment visible and top bar/question selector invisible
-        //FIXME this should only be done on mobile devices
-        findViewById(R.id.questionContent).setVisibility(View.VISIBLE);
-        findViewById(R.id.topBar).setVisibility(View.INVISIBLE);
-        findViewById(R.id.mainContent).setVisibility(View.INVISIBLE);
+        if (mQuestionFragment != null) { //If previous question has not been unselected
+            //Reset everything by going to question selector
+            goToQuestionSelector();
+        }
 
-        //Insert a question fragment into the question fragment holder
-        getSupportFragmentManager().beginTransaction().replace(R.id.questionContent,
-                QuestionFragment.newInstance()).commit();
+        //Use insert/replace method to show question fragment (depending on if separate container
+        // available)
+        mQuestionFragment = QuestionFragment.newInstance();
+
+        if (findViewById(R.id.questionContent) != null) { //If separate container exists
+            getSupportFragmentManager().beginTransaction().replace(R.id.questionContent, mQuestionFragment).commit();
+        } else { //If no separate container
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            //Hide current fragment in main content slot
+            transaction.hide(mQuestionSelectorFragment);
+
+            //Create and display the new question fragment
+            transaction.add(R.id.mainContent, mQuestionFragment);
+            transaction.commit();
+
+            //Hide the header bar
+            findViewById(R.id.topBar).setVisibility(View.INVISIBLE);
+        }
     }
 
     public void goToQuestionSelector() {
-        //FIXME this should only be done on mobile devices
-        findViewById(R.id.questionContent).setVisibility(View.INVISIBLE);
-        findViewById(R.id.topBar).setVisibility(View.VISIBLE);
-        findViewById(R.id.mainContent).setVisibility(View.VISIBLE);
+        if (mQuestionFragment != null) {
+            //Remove question fragment and any references
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.remove(mQuestionFragment);
 
-        //Empty out the question fragment holder
-        Fragment questionFragment = getSupportFragmentManager().findFragmentById(R.id.questionContent);
-        if (questionFragment != null) {
-            getSupportFragmentManager().beginTransaction().remove(questionFragment).commit();
-        }
+            if (findViewById(R.id.questionContent) == null) { //If there is no separate container for question fragments
+                //Show the question selector again
+                transaction.show(mQuestionSelectorFragment);
+
+                //Show the layout bar again
+                findViewById(R.id.topBar).setVisibility(View.VISIBLE);
+            }
+
+            transaction.commit();
+
+            //Hide the 'previous' button again
+            UIData.getInstance().setShowPreviousButton(false);
+
+            //Unlink this question fragment
+            mQuestionFragment = null;
+
+        } //Else do nothing, should already be at question selector
     }
 
     public static Intent makeIntent(Activity callingActivity) {
