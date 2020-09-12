@@ -34,4 +34,10 @@ public class Country {
     public int getFlagResourceID() {
         return flagResourceID;
     }
+
+    public void addPointsToQuestions(int pointsAdded) {
+        for (Question question : questions) {
+            question.setPoints(question.getPoints() + pointsAdded);
+        }
+    }
 }

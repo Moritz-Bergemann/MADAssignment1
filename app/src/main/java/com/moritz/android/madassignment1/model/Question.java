@@ -2,9 +2,10 @@ package com.moritz.android.madassignment1.model;
 
 public class Question {
     private String question;
-    String[] choices;
-    int correctChoice;
-    boolean special;
+    private String[] choices;
+    private int correctChoice;
+    private boolean special;
+    private boolean answered;
 
     private int points;
     private int penalty;
@@ -16,6 +17,7 @@ public class Question {
         this.points = points;
         this.penalty = penalty;
         this.special = special;
+        this.answered = false;
     }
 
     public boolean isCorrectChoice(int choice) {
@@ -30,6 +32,10 @@ public class Question {
         return choices;
     }
 
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
     public int getPoints() {
         return points;
     }
@@ -40,5 +46,13 @@ public class Question {
 
     public boolean isSpecial() {
         return special;
+    }
+
+    public boolean isAnswered() {
+        return answered;
+    }
+
+    public void setAnswered(boolean answered) {
+        this.answered = answered;
     }
 }

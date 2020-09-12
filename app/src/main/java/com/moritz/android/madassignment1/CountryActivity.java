@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import com.moritz.android.madassignment1.model.Question;
 
 public class CountryActivity extends AppCompatActivity {
 
@@ -45,6 +42,6 @@ public class CountryActivity extends AppCompatActivity {
 
     public void goToQuestionSelector() {
         //Start the question activity
-        startActivity(QuestionActivity.makeIntent(this));
+        startActivity(QuestionsActivity.makeIntent(this));
     }
 }

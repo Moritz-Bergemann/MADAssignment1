@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moritz.android.madassignment1.model.Country;
 import com.moritz.android.madassignment1.model.GameData;
@@ -102,18 +103,25 @@ public class QuestionSelectorFragment extends SelectorFragment {
                 mQuestion = question;
 
                 //Setting layout values
-                mName.setText(String.format(Locale.US, "Q%d", questionNumber));
-                mPointsValue.setText(String.format(Locale.US, "Q%d", question.getPoints()));
-                mPenaltyValue.setText(String.format(Locale.US, "Q%d", question.getPenalty()));
+                String questionName = String.format(Locale.US, "Q%d", questionNumber);
+                if (mQuestion.isSpecial()) {
+                    questionName += " (Special)";
+                }
+                mName.setText(questionName);
+                mPointsValue.setText(String.format(Locale.US, "%d", question.getPoints()));
+                mPenaltyValue.setText(String.format(Locale.US, "%d", question.getPenalty()));
 
                 //TODO actual clicking on question stuff
                 itemView.setOnClickListener(clickedView -> {
+                    if (!mQuestion.isAnswered()) { //If question isn't already answered
+                        if (getActivity() instanceof QuestionsActivity) {
+                            GameData.getInstance().setCurQuestion(mQuestion);
 
-                    if (getActivity() instanceof QuestionActivity) {
-                        GameData.getInstance().setCurQuestion(mQuestion);
-
-                        GameData.getInstance().setCurQuestion(mQuestion);
-                        ((QuestionActivity) getActivity()).goToQuestion();
+                            GameData.getInstance().setCurQuestion(mQuestion);
+                            ((QuestionsActivity) getActivity()).goToQuestion();
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "Question already answered!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

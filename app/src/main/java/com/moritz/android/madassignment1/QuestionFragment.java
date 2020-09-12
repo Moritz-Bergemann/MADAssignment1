@@ -90,14 +90,42 @@ public class QuestionFragment extends Fragment {
                 //If this is the right answer
                 if (mQuestion.isCorrectChoice(ii)) {
                     answerButton.setOnClickListener(clickedView -> {
-                        Toast.makeText(getContext(), "Right answer!", Toast.LENGTH_SHORT).show(); //TODO
+                        if (!mQuestion.isAnswered()) {
+                            //Showing the answer was right
+                            Toast.makeText(getContext(), "Right answer!", Toast.LENGTH_SHORT).show(); //TODO
+
+                            //Adding the number of points to the player's score
+                            GameData.getInstance().addCurPoints(mQuestion.getPoints());
+
+                            //Adding special points if this question was special
+                            if (mQuestion.isSpecial()) {
+                                GameData.getInstance().addSpecialPoint();
+                            }
+
+                            //Setting this question to answered & showing the return button
+                            mQuestion.setAnswered(true);
+                            UIData.getInstance().setShowPreviousButton(true);
+                        } else {
+                            Toast.makeText(getContext(), "You've already answered this question!", Toast.LENGTH_SHORT).show();
+                        }
                     });
                 } else { //If this was a wrong answer
                     answerButton.setOnClickListener(clickedView -> {
-                        Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show(); //TODO
+                        if (!mQuestion.isAnswered()) {
+                            //Showing the answer was wrong
+                            Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show(); //TODO
+
+                            //Making the player lose the penalty points
+                            GameData.getInstance().loseCurPoints(mQuestion.getPenalty());
+
+                            //Setting this question to answered & showing the return button
+                            mQuestion.setAnswered(true);
+                            UIData.getInstance().setShowPreviousButton(true);
+                        } else {
+                            Toast.makeText(getContext(), "You've already answered this question!", Toast.LENGTH_SHORT).show();
+                        }
                     });
                 }
-
                 ii++;
             }
         }

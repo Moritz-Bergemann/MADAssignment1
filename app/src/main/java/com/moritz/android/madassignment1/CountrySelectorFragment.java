@@ -85,11 +85,18 @@ public class CountrySelectorFragment extends SelectorFragment {
             public void bind(Country country) {
                 mCountry = country;
                 mFlagImage.setImageResource(country.getFlagResourceID());
+                GameData gameData = GameData.getInstance();
 
                 itemView.setOnClickListener(view -> {
-                    if (getActivity() instanceof CountryActivity) {
-                        GameData.getInstance().setCurCountry(country);
-                        ((CountryActivity) getActivity()).goToQuestionSelector();
+                    if (gameData.getSpecialPoints() > 0) { //If the player has special points to spend
+                        mCountry.addPointsToQuestions(GameData.POINTS_ADDED_BY_SPECIAL);
+                        gameData.loseSpecialPoint();
+                    } else { //If player has no special points
+                        //Begin question activity
+                        if (getActivity() instanceof CountryActivity) {
+                            GameData.getInstance().setCurCountry(country);
+                            ((CountryActivity) getActivity()).goToQuestionSelector();
+                        }
                     }
                 });
             }

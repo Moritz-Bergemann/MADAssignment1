@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.moritz.android.madassignment1.model.GameData;
-
 /**
  * ViewModel class for UI components - used for communication between fragments regarding UI layout.
  */
@@ -27,6 +25,9 @@ public class UIData {
 
         mOrientation = new MutableLiveData<>();
         mOrientation.setValue(DEFAULT_ORIENTATION);
+
+        mShowPreviousButton = new MutableLiveData<>();
+        mShowPreviousButton.setValue(false);
     }
 
     public static final int DEFAULT_SPAN = 2;
@@ -57,5 +58,15 @@ public class UIData {
         }
 
         mOrientation.setValue(orientation);
+    }
+
+    private MutableLiveData<Boolean> mShowPreviousButton;
+
+    public LiveData<Boolean> getShowPreviousButton() {
+        return mShowPreviousButton;
+    }
+
+    public void setShowPreviousButton(boolean showPreviousButton) {
+        mShowPreviousButton.setValue(showPreviousButton);
     }
 }

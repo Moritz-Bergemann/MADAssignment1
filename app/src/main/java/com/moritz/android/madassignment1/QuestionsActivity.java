@@ -8,9 +8,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +50,34 @@ public class QuestionActivity extends AppCompatActivity {
         findViewById(R.id.topBar).setVisibility(View.INVISIBLE);
         findViewById(R.id.mainContent).setVisibility(View.INVISIBLE);
 
+        //Insert a question fragment into the question fragment holder
         getSupportFragmentManager().beginTransaction().replace(R.id.questionContent,
                 QuestionFragment.newInstance()).commit();
     }
 
+    public void goToQuestionSelector() {
+        //FIXME this should only be done on mobile devices
+        findViewById(R.id.questionContent).setVisibility(View.INVISIBLE);
+        findViewById(R.id.topBar).setVisibility(View.VISIBLE);
+        findViewById(R.id.mainContent).setVisibility(View.VISIBLE);
+
+        //Empty out the question fragment holder
+        Fragment questionFragment = getSupportFragmentManager().findFragmentById(R.id.questionContent);
+        if (questionFragment != null) {
+            getSupportFragmentManager().beginTransaction().remove(questionFragment).commit();
+        }
+    }
+
     public static Intent makeIntent(Activity callingActivity) {
-        Intent intent = new Intent(callingActivity, QuestionActivity.class);
+        Intent intent = new Intent(callingActivity, QuestionsActivity.class);
         return intent;
+    }
+
+    /**
+     * Returns to the calling activity. Should only be called if the activity has finished successfully.
+     */
+    public void returnActivity() {
+        setResult(RESULT_OK);
+        finish();
     }
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.moritz.android.madassignment1.model.GameData;
@@ -56,6 +57,33 @@ public class ScoreTrackerFragment extends Fragment {
         TextView scoreValue = view.findViewById(R.id.scoreValue);
         GameData.getInstance().getCurPoints().observe(getViewLifecycleOwner(), score -> {
             scoreValue.setText(String.format(Locale.US, "%d", score));
+        });
+
+        Button previousButton = view.findViewById(R.id.previousButton);
+        UIData.getInstance().getShowPreviousButton().observe(getViewLifecycleOwner(), showButton -> {
+            if (showButton) {
+                previousButton.setVisibility(View.VISIBLE);
+            } else {
+                previousButton.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        //Setting previous button functionality
+        previousButton.setOnClickListener(button -> {
+            //Go to question selector if activity is QuestionsActivity
+            if (getActivity() instanceof QuestionsActivity) {
+                QuestionsActivity activity = (QuestionsActivity) getActivity();
+
+                //If the user has special points
+                if (GameData.getInstance().getSpecialPoints() > 0) {
+                    activity.returnActivity();
+                } else {
+                    activity.goToQuestionSelector();
+                }
+
+                //Hide the 'previous' button again
+                UIData.getInstance().setShowPreviousButton(false);
+            }
         });
     }
 }

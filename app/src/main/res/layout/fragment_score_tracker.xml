@@ -35,14 +35,14 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/backButton"
+        app:layout_constraintEnd_toStartOf="@+id/previousButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/scoreValue"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Win/Lose Here" />
 
     <Button
-        android:id="@+id/backButton"
+        android:id="@+id/previousButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Previous"
