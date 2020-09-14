@@ -92,7 +92,7 @@ public class QuestionFragment extends Fragment {
                     answerButton.setOnClickListener(clickedView -> {
                         if (!mQuestion.isAnswered()) {
                             //Showing the answer was right
-                            Toast.makeText(getContext(), "Right answer!", Toast.LENGTH_SHORT).show(); //TODO
+                            Toast.makeText(getContext(), "Right answer!", Toast.LENGTH_SHORT).show();
 
                             //Adding the number of points to the player's score
                             GameData.getInstance().addCurPoints(mQuestion.getPoints());
@@ -113,7 +113,7 @@ public class QuestionFragment extends Fragment {
                     answerButton.setOnClickListener(clickedView -> {
                         if (!mQuestion.isAnswered()) {
                             //Showing the answer was wrong
-                            Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show(); //TODO
+                            Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show();
 
                             //Making the player lose the penalty points
                             GameData.getInstance().loseCurPoints(mQuestion.getPenalty());

@@ -8,12 +8,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class CountryActivity extends AppCompatActivity {
+public class CountriesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_country);
+        setContentView(R.layout.activity_countries);
 
         //** FRAGMENT SETUP **
         FragmentManager fm = getSupportFragmentManager();
@@ -48,7 +48,7 @@ public class CountryActivity extends AppCompatActivity {
     }
 
     public static Intent makeIntent(Activity callingActivity) {
-        Intent intent = new Intent(callingActivity, CountryActivity.class);
+        Intent intent = new Intent(callingActivity, CountriesActivity.class);
         return intent;
     }
 }

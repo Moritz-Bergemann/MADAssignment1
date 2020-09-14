@@ -52,7 +52,7 @@ public class GameData {
         targetPoints = randBetween(TARGET_POINTS_MIN, TARGET_POINTS_MAX);
 
         //Generating questions information
-        countries = generateQuestionsTest();
+        countries = getCountries();
 
         specialPoints = 0;
     }
@@ -83,10 +83,6 @@ public class GameData {
 
     public LiveData<Integer> getCurPoints() {
         return curPoints;
-    }
-
-    public void setCurPoints(int curPoints) { //FIXME may be uneccesary
-        this.curPoints.setValue(curPoints);
     }
 
     public void addCurPoints(int points) {
@@ -152,14 +148,12 @@ public class GameData {
      *
      * @return generated list of questions
      */
-    private static List<Country> generateQuestions() {
-        List<Country> countryList = new LinkedList<>();
-
-
+    private static List<Country> getCountries() {
+        return CountryDataGenerator.getCountries();
     }
 
 
-    private static List<Country> generateQuestionsTest() {
+    private static List<Country> getCountriesTest() {
         List<Country> countryList = new LinkedList<>();
 
         Country testA = new Country("testA", R.drawable.flagtesta);

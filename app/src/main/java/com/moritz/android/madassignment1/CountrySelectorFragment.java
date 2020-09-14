@@ -1,6 +1,8 @@
 package com.moritz.android.madassignment1;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -89,13 +91,24 @@ public class CountrySelectorFragment extends SelectorFragment {
 
                 itemView.setOnClickListener(view -> {
                     if (gameData.getSpecialPoints() > 0) { //If the player has special points to spend
-                        mCountry.addPointsToQuestions(GameData.POINTS_ADDED_BY_SPECIAL);
-                        gameData.loseSpecialPoint();
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+                        dialogBuilder.setTitle("Confirm add points");
+                        dialogBuilder.setMessage(R.string.special_point_confirmation);
+                        dialogBuilder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                            //Do special point stuff
+                            mCountry.addPointsToQuestions(GameData.POINTS_ADDED_BY_SPECIAL);
+                            gameData.loseSpecialPoint();
+                        });
+                        dialogBuilder.setNegativeButton("Cancel", null);
+
+                        //Show the dialog
+                        dialogBuilder.create().show();
+
                     } else { //If player has no special points
                         //Begin question activity
-                        if (getActivity() instanceof CountryActivity) {
+                        if (getActivity() instanceof CountriesActivity) {
                             GameData.getInstance().setCurCountry(country);
-                            ((CountryActivity) getActivity()).goToQuestionSelector();
+                            ((CountriesActivity) getActivity()).goToQuestionSelector();
                         }
                     }
                 });

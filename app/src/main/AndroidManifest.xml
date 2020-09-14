@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuestionsActivity" />
-        <activity android:name=".CountryActivity"/>
+        <activity android:name=".CountriesActivity"/>
     </application>
 
 </manifest>

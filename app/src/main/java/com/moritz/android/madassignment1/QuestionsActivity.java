@@ -106,8 +106,9 @@ public class QuestionsActivity extends AppCompatActivity {
 
             transaction.commit();
 
-            //Hide the 'previous' button again
+            //Hide the 'previous' button
             UIData.getInstance().setShowPreviousButton(false);
+
 
             //Unlink this question fragment
             mQuestionFragment = null;
@@ -124,6 +125,9 @@ public class QuestionsActivity extends AppCompatActivity {
      * Returns to the calling activity. Should only be called if the activity has finished successfully.
      */
     public void returnActivity() {
+        //Hide the 'previous' button
+        UIData.getInstance().setShowPreviousButton(false);
+
         setResult(RESULT_OK);
         finish();
     }

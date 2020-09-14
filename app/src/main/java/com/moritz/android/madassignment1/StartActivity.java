@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
         //Set button to start the game
         Button startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(view -> {
-            Intent intent = CountryActivity.makeIntent(this);
+            Intent intent = CountriesActivity.makeIntent(this);
             startActivity(intent);
         });
     }
