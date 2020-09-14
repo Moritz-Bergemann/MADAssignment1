@@ -13,7 +13,7 @@ public class CountryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_country);
 
         //** FRAGMENT SETUP **
         FragmentManager fm = getSupportFragmentManager();

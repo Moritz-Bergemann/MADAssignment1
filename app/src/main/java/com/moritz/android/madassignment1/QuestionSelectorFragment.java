@@ -53,7 +53,7 @@ public class QuestionSelectorFragment extends SelectorFragment {
     @Override
     protected RecyclerView.Adapter<? extends RecyclerView.ViewHolder> getAdapter() {
         //Return an instance of the created QuestionAdapter class bound to the questions for the
-        // country it has been called with
+        //  country it has been called with
         return new QuestionAdapter(mCountry.getQuestions(), getActivity());
     }
 
