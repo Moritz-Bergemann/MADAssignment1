@@ -52,7 +52,7 @@ public class GameData {
         targetPoints = randBetween(TARGET_POINTS_MIN, TARGET_POINTS_MAX);
 
         //Generating questions information
-        countries = generateQuestions();
+        countries = generateQuestionsTest();
 
         specialPoints = 0;
     }
@@ -149,9 +149,17 @@ public class GameData {
 
     /**
      * Generates hard-coded questions for game for various countries.
+     *
      * @return generated list of questions
      */
     private static List<Country> generateQuestions() {
+        List<Country> countryList = new LinkedList<>();
+
+
+    }
+
+
+    private static List<Country> generateQuestionsTest() {
         List<Country> countryList = new LinkedList<>();
 
         Country testA = new Country("testA", R.drawable.flagtesta);
