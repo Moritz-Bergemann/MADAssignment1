@@ -32,6 +32,14 @@ public class Question {
         return choices;
     }
 
+    public int getCorrectChoice() {
+        return correctChoice;
+    }
+
+    public void setCorrectChoice(int correctChoice) {
+        this.correctChoice = correctChoice;
+    }
+
     public void setPoints(int points) {
         this.points = points;
     }

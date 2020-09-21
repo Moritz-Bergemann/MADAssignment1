@@ -33,7 +33,6 @@ public class GameData {
 
 
     private MutableLiveData<Integer> curPoints;
-    private MutableLiveData<Boolean> gameOver;
     private int targetPoints;
     private int seedPoints;
     private int specialPoints;  //Special points can be 'redeemed' to increase the points given by a
@@ -41,16 +40,18 @@ public class GameData {
 
     private Country curCountry;
     private Question curQuestion;
-
     List<Country> countries;
+
+    //**Actually Private (for internal functionality)**
+    //Tracks if game has ended (used internally to see if points should be updated on question answering)
+    private boolean gameOver;
 
     private GameData() {
         //Randomly select seed points (& therefore initial score)
+        seedPoints = (randBetween(SEED_POINTS_MIN, SEED_POINTS_MAX));
         curPoints = new MutableLiveData<>();
-        curPoints.setValue(randBetween(SEED_POINTS_MIN, SEED_POINTS_MAX));
-
-        gameOver = new MutableLiveData<>();
-        gameOver.setValue(false);
+        curPoints.setValue(seedPoints);
+        gameOver = false;
 
         //Randomly select target points
         targetPoints = randBetween(TARGET_POINTS_MIN, TARGET_POINTS_MAX);
@@ -89,25 +90,23 @@ public class GameData {
         return curPoints;
     }
 
-    public void setGameOver(boolean gameOver) {
-        this.gameOver.setValue(gameOver);
-    }
+    private void setCurPoints(int points) {
+        if (!gameOver) {
+            this.curPoints.setValue(points);
 
-    public LiveData<Boolean> getGameOver() {
-        return gameOver;
+            //Setting gameOver if this change ended the game
+            if (curPoints.getValue() >= targetPoints || curPoints.getValue() < 0) {
+                gameOver = true;
+            }
+        }
     }
-
 
     public void addCurPoints(int points) {
-        if (!gameOver.getValue()) {
-            this.curPoints.setValue(curPoints.getValue() + points);
-        }
+        setCurPoints(curPoints.getValue() + points);
     }
 
     public void loseCurPoints(int points) {
-        if (!gameOver.getValue()) {
-            this.curPoints.setValue(curPoints.getValue() - points);
-        }
+        setCurPoints(curPoints.getValue() - points);
     }
 
     public int getSpecialPoints() {
@@ -132,10 +131,6 @@ public class GameData {
 
     public int getSeedPoints() {
         return seedPoints;
-    }
-
-    public boolean hasWon() {
-        return curPoints.getValue() >= targetPoints;
     }
 
     /** FIXME self-reference - retrieved from OOSE assignment
@@ -166,7 +161,12 @@ public class GameData {
      * @return generated list of questions
      */
     private static List<Country> getCountries() {
-        return CountryDataGenerator.getCountries();
+        List<Country> countries = CountryDataGenerator.getCountries();
+
+        //Shuffle the order of choices in each country question
+        CountryDataGenerator.randomiseQuestions(countries);
+
+        return countries;
     }
 
 

@@ -24,6 +24,7 @@ import com.moritz.android.madassignment1.model.Question;
 public class QuestionFragment extends Fragment {
 
     private Question mQuestion;
+    private int[] mAnswerButtonIds;
 
     public QuestionFragment() {
         // Required empty public constructor
@@ -52,16 +53,23 @@ public class QuestionFragment extends Fragment {
         // Inflate the layout for this fragment
         int layoutId = -1;
 
-        //FIXME making the layout get filled automatically would have been a way nicer solution, but the assignment spec specifically says different 'layouts'. This makes me unhappy
+
+        //NOTE: Making the layout get filled automatically would have been a way nicer solution, but
+        //  the assignment spec specifically says different 'layouts'. This makes me unhappy, but
+        //  this also works, and hey, at least the 3-question fragment has a cool triangle shape
+        //  right?.
         switch (mQuestion.getChoices().length) {
             case 2:
                 layoutId = R.layout.fragment_question_2;
+                mAnswerButtonIds = new int[]{R.id.answer1, R.id.answer2};
                 break;
             case 3:
                 layoutId = R.layout.fragment_question_3;
+                mAnswerButtonIds = new int[]{R.id.answer1, R.id.answer2, R.id.answer3};
                 break;
             case 4:
                 layoutId = R.layout.fragment_question_4;
+                mAnswerButtonIds = new int[]{R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4};
                 break;
             default:
                 throw new IllegalArgumentException("Bad number of answers");
@@ -78,56 +86,57 @@ public class QuestionFragment extends Fragment {
         TextView questionText = view.findViewById(R.id.questionText);
         questionText.setText(mQuestion.getQuestion());
 
-        //Setting listeners for answers (1 and 2 must always exist)
-        int[] buttonIds = new int[]{R.id.answer1, R.id.answer2, R.id.answer3, R.id.answer4};
+        //Sanity check, ensure number of answer buttons in fragment is same as number of answers
+        if (mAnswerButtonIds.length != mQuestion.getChoices().length) {
+            throw new IllegalArgumentException("Number of buttons not equal to number of questions!");
+        }
 
         int ii = 0; //Tracking the current question element
-        for (int id : buttonIds) {
+        for (int id : mAnswerButtonIds) {
             Button answerButton = view.findViewById(id);
-            if (answerButton != null) {
-                answerButton.setText(mQuestion.getChoices()[ii]);
 
-                //If this is the right answer
-                if (mQuestion.isCorrectChoice(ii)) {
-                    answerButton.setOnClickListener(clickedView -> {
-                        if (!mQuestion.isAnswered()) {
-                            //Showing the answer was right
-                            Toast.makeText(getContext(), "Right answer!", Toast.LENGTH_SHORT).show();
+            answerButton.setText(mQuestion.getChoices()[ii]);
 
-                            //Adding the number of points to the player's score
-                            GameData.getInstance().addCurPoints(mQuestion.getPoints());
+            //If this is the right answer
+            if (mQuestion.isCorrectChoice(ii)) {
+                answerButton.setOnClickListener(clickedView -> {
+                    if (!mQuestion.isAnswered()) {
+                        //Showing the answer was right
+                        Toast.makeText(getContext(), "Right answer!", Toast.LENGTH_SHORT).show();
 
-                            //Adding special points if this question was special
-                            if (mQuestion.isSpecial()) {
-                                GameData.getInstance().addSpecialPoint();
-                            }
+                        //Adding the number of points to the player's score
+                        GameData.getInstance().addCurPoints(mQuestion.getPoints());
 
-                            //Setting this question to answered & showing the return button
-                            mQuestion.setAnswered(true);
-                            UIData.getInstance().setShowPreviousButton(true);
-                        } else {
-                            Toast.makeText(getContext(), "You've already answered this question!", Toast.LENGTH_SHORT).show();
+                        //Adding special points if this question was special
+                        if (mQuestion.isSpecial()) {
+                            GameData.getInstance().addSpecialPoint();
                         }
-                    });
-                } else { //If this was a wrong answer
-                    answerButton.setOnClickListener(clickedView -> {
-                        if (!mQuestion.isAnswered()) {
-                            //Showing the answer was wrong
-                            Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show();
 
-                            //Making the player lose the penalty points
-                            GameData.getInstance().loseCurPoints(mQuestion.getPenalty());
+                        //Setting this question to answered & showing the return button
+                        mQuestion.setAnswered(true);
+                        UIData.getInstance().setShowPreviousButton(true);
+                    } else {
+                        Toast.makeText(getContext(), "You've already answered this question!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else { //If this was a wrong answer
+                answerButton.setOnClickListener(clickedView -> {
+                    if (!mQuestion.isAnswered()) {
+                        //Showing the answer was wrong
+                        Toast.makeText(getContext(), "Wrong answer!", Toast.LENGTH_SHORT).show();
 
-                            //Setting this question to answered & showing the return button
-                            mQuestion.setAnswered(true);
-                            UIData.getInstance().setShowPreviousButton(true);
-                        } else {
-                            Toast.makeText(getContext(), "You've already answered this question!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-                ii++;
+                        //Making the player lose the penalty points
+                        GameData.getInstance().loseCurPoints(mQuestion.getPenalty());
+
+                        //Setting this question to answered & showing the return button
+                        mQuestion.setAnswered(true);
+                        UIData.getInstance().setShowPreviousButton(true);
+                    } else {
+                        Toast.makeText(getContext(), "You've already answered this question!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
+            ii++;
         }
     }
 }

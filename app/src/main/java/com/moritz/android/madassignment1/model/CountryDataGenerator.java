@@ -1,9 +1,14 @@
+/* Parts of this file comprise externally-obtained code. */
+
 package com.moritz.android.madassignment1.model;
 
 import com.moritz.android.madassignment1.R;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class CountryDataGenerator {
     public static List<Country> getCountries() {
@@ -137,5 +142,46 @@ public class CountryDataGenerator {
         vn.addQuestion(new Question("What is the name of the largest city (by population) in Vietnam?", new String[]{"Ho Chi Minh City", "Hanoi", "Da Nang", "Hue"}, 0, 15, 16, false));
         vn.addQuestion(new Question("What is the size of Vietnam?", new String[]{"331'210", "393'980", "454'101", "194'695"}, 0, 9, 14, false));
         return countryList;
+    }
+
+    /** Randomly shuffles the choices for all questions in a list of countries, ensuring to correctly track the position of the correct choice.
+     *
+     * @param countryList List of countries with questions to shuffle
+     * @return The shuffled list of countries (also done within countries themselves because PBR)
+     */
+    public static List<Country> randomiseQuestions(List<Country> countryList) {
+        for (Country country : countryList) {
+            for (Question question : country.getQuestions()) {
+                String rightChoice = question.getChoices()[question.getCorrectChoice()];
+                Collections.shuffle(Arrays.asList(question.getChoices()));
+
+                //Move the correct choice value to the new position of the correct choice
+                int ii = 0;
+                for (String choice : question.getChoices()) {
+                    if (choice.equals(rightChoice)) {
+                        question.setCorrectChoice(ii);
+                    }
+
+                    ii++;
+                }
+            }
+        }
+
+        return countryList;
+    }
+
+    /** Randomly shuffles an array of strings. Retrieved from JournalDev at
+     *  https://www.journaldev.com/32661/shuffle-array-java (September 21, 2020)
+     * @param array Array to shuffle
+     */
+    private static void shuffleStringArray(String[] array) {
+        Random rand = new Random();
+
+        for (int i = 0; i < array.length; i++) {
+            int randomIndexToSwap = rand.nextInt(array.length);
+            String temp = array[randomIndexToSwap];
+            array[randomIndexToSwap] = array[i];
+            array[i] = temp;
+        }
     }
 }
