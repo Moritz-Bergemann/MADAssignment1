@@ -5,9 +5,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +32,8 @@ import java.util.Locale;
  */
 public class QuestionSelectorFragment extends SelectorFragment {
     private Country mCountry;
+
+    private static final String TAG = "QuestionSelectorFrag";
 
     public QuestionSelectorFragment() {
         // Required empty public constructor
@@ -95,6 +101,8 @@ public class QuestionSelectorFragment extends SelectorFragment {
         private class QuestionViewHolder extends RecyclerView.ViewHolder {
             private Question mQuestion;
 
+            private ConstraintLayout mButton;
+
             private TextView mName;
             private TextView mPointsValue;
             private TextView mPenaltyValue;
@@ -103,6 +111,7 @@ public class QuestionSelectorFragment extends SelectorFragment {
                 super(itemView);
 
                 mQuestion = null;
+                mButton = itemView.findViewById(R.id.button);
                 mName = itemView.findViewById(R.id.questionName);
                 mPointsValue = itemView.findViewById(R.id.pointsValue);
                 mPenaltyValue = itemView.findViewById(R.id.penaltyValue);
@@ -120,9 +129,29 @@ public class QuestionSelectorFragment extends SelectorFragment {
                 mPointsValue.setText(String.format(Locale.US, "%d", question.getPoints()));
                 mPenaltyValue.setText(String.format(Locale.US, "%d", question.getPenalty()));
 
-                itemView.setOnClickListener(clickedView -> {
+                UIData.getInstance().getOrientation().observe(getViewLifecycleOwner(), integer -> {
+                    switch (integer) {
+                        case GridLayoutManager.HORIZONTAL:
+                            ViewGroup.LayoutParams horizontalParams = itemView.getLayoutParams();
+                            horizontalParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                            horizontalParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            itemView.setLayoutParams(horizontalParams);
+                            break;
+                        case GridLayoutManager.VERTICAL:
+                            ViewGroup.LayoutParams verticalParams = itemView.getLayoutParams();
+                            verticalParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                            verticalParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            itemView.setLayoutParams(verticalParams);
+                            break;
+                    }
+                });
+
+                mButton.setOnClickListener(clickedView -> {
+                    Log.v(TAG, "Question Clicked");
+
                     if (!mQuestion.isAnswered()) { //If question isn't already answered
                         if (getActivity() instanceof QuestionsActivity) {
+
                             GameData.getInstance().setCurQuestion(mQuestion);
 
                             GameData.getInstance().setCurQuestion(mQuestion);

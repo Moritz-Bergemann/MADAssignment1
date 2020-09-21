@@ -70,5 +70,19 @@ public class ScoreTrackerFragment extends Fragment {
                 }
             }
         });
+
+        TextView winLoseText = view.findViewById(R.id.winLoseText);
+        //Setting won/lost label
+        GameData.getInstance().getCurPoints().observe(getViewLifecycleOwner(), points -> {
+            if (points >= GameData.getInstance().getTargetPoints()) { //If game won
+                winLoseText.setVisibility(View.VISIBLE);
+                winLoseText.setText(R.string.loseGameText);
+            } else if (points <= 0) { //If game lost
+                winLoseText.setVisibility(View.VISIBLE);
+                winLoseText.setText(R.string.wonGameMessage);
+            } else {
+                winLoseText.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }

@@ -33,6 +33,7 @@ public class GameData {
 
 
     private MutableLiveData<Integer> curPoints;
+    private MutableLiveData<Boolean> gameOver;
     private int targetPoints;
     private int seedPoints;
     private int specialPoints;  //Special points can be 'redeemed' to increase the points given by a
@@ -47,6 +48,9 @@ public class GameData {
         //Randomly select seed points (& therefore initial score)
         curPoints = new MutableLiveData<>();
         curPoints.setValue(randBetween(SEED_POINTS_MIN, SEED_POINTS_MAX));
+
+        gameOver = new MutableLiveData<>();
+        gameOver.setValue(false);
 
         //Randomly select target points
         targetPoints = randBetween(TARGET_POINTS_MIN, TARGET_POINTS_MAX);
@@ -85,12 +89,25 @@ public class GameData {
         return curPoints;
     }
 
+    public void setGameOver(boolean gameOver) {
+        this.gameOver.setValue(gameOver);
+    }
+
+    public LiveData<Boolean> getGameOver() {
+        return gameOver;
+    }
+
+
     public void addCurPoints(int points) {
-        this.curPoints.setValue(curPoints.getValue() + points);
+        if (!gameOver.getValue()) {
+            this.curPoints.setValue(curPoints.getValue() + points);
+        }
     }
 
     public void loseCurPoints(int points) {
-        this.curPoints.setValue(curPoints.getValue() - points);
+        if (!gameOver.getValue()) {
+            this.curPoints.setValue(curPoints.getValue() - points);
+        }
     }
 
     public int getSpecialPoints() {
