@@ -169,19 +169,4 @@ public class CountryDataGenerator {
 
         return countryList;
     }
-
-    /** Randomly shuffles an array of strings. Retrieved from JournalDev at
-     *  https://www.journaldev.com/32661/shuffle-array-java (September 21, 2020)
-     * @param array Array to shuffle
-     */
-    private static void shuffleStringArray(String[] array) {
-        Random rand = new Random();
-
-        for (int i = 0; i < array.length; i++) {
-            int randomIndexToSwap = rand.nextInt(array.length);
-            String temp = array[randomIndexToSwap];
-            array[randomIndexToSwap] = array[i];
-            array[i] = temp;
-        }
-    }
 }
