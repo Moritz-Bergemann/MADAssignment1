@@ -61,13 +61,7 @@ public class ScoreTrackerFragment extends Fragment {
             //Go to question selector if activity is QuestionsActivity
             if (getActivity() instanceof QuestionsActivity) {
                 QuestionsActivity activity = (QuestionsActivity) getActivity();
-
-                //If the user has special points
-                if (GameData.getInstance().getSpecialPoints() > 0) {
-                    activity.returnActivity();
-                } else {
-                    activity.goToQuestionSelector();
-                }
+                activity.returnActivity();
             }
         });
 
