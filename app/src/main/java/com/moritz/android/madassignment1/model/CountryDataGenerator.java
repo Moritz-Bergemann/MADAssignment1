@@ -117,7 +117,7 @@ public class CountryDataGenerator {
         gb.addQuestion(new Question("What is the GDP of the United Kingdom?", new String[]{"2,827,113,184,696 USD", "3,781,380,993,136 USD", "3,194,638,330,690 USD", "2,571,620,944,521 USD"}, 0, 6, 11, false));
         gb.addQuestion(new Question("What is the name of the largest city (by population) in the United Kingdom?", new String[]{"London", "Edinburgh", "Birmingham", "Manchester"}, 0, 11, 7, false));
         gb.addQuestion(new Question("What is the size of the United Kingdom (in square kilometres)?", new String[]{"243'610", "320'740", "276'331", "307'022"}, 0, 11, 9, true));
-        gb.addQuestion(new Question("What is the national animal of the United Kingdom?", new String[]{"The Lion", "The Eagle", "The Wombat", "The Pigeon"}, 0, 12, 15, 0));
+        gb.addQuestion(new Question("What is the national animal of the United Kingdom?", new String[]{"The Lion", "The Eagle", "The Wombat", "The Pigeon"}, 0, 12, 15, false));
 
         Country hk = new Country("Hong Kong", R.drawable.flag_hk);
         countryList.add(hk);
@@ -125,7 +125,7 @@ public class CountryDataGenerator {
         hk.addQuestion(new Question("What is the GDP of Hong Kong?", new String[]{"366,029,556,273 USD", "379,835,079,007 USD", "342,061,025,844 USD", "413,882,269,172 USD"}, 0, 7, 7, false));
         hk.addQuestion(new Question("What is the size of Hong Kong (in square kilometres)?", new String[]{"1'108", "8'808", "1'575", "1'540"}, 0, 16, 19, false));
         hk.addQuestion(new Question("What year was the territory of Hong Kong transferred from the UK to China?", new String[]{"1997", "2000", "1989"}, 0, 11, 14, false));
-        hk.addQuestion(new Question("What does the name 'Hong Kong' mean in Cantonese?", new String[]{"Fragrant Harbour", "Secret Harbour", "Trade Harbour", "Colonialism Harbour"}, 0, 6, 12, false);
+        hk.addQuestion(new Question("What does the name 'Hong Kong' mean in Cantonese?", new String[]{"Fragrant Harbour", "Secret Harbour", "Trade Harbour", "Colonialism Harbour"}, 0, 6, 12, false));
 
         Country jp = new Country("Japan", R.drawable.flag_jp);
         countryList.add(jp);
@@ -167,7 +167,7 @@ public class CountryDataGenerator {
         vn.addQuestion(new Question("What is the GDP of Vietnam?", new String[]{"261,921,244,843 USD", "306,879,694,553 USD", "339,603,290,383 USD", "143,478,475,212 USD"}, 0, 5, 10, false));
         vn.addQuestion(new Question("What is the name of the largest city (by population) in Vietnam?", new String[]{"Ho Chi Minh City", "Hanoi", "Da Nang", "Hue"}, 0, 15, 16, false));
         vn.addQuestion(new Question("What is the size of Vietnam (in square kilometres)?", new String[]{"331'210", "393'980", "454'101", "194'695"}, 0, 9, 14, false));
-        vn.addQuestion(new Question("What is the most popular religion in Vietnam?", new String[]{"Buddhism", "Christianity", "Hoa Hao", "Islam"}, 0, 13, 14, 0));
+        vn.addQuestion(new Question("What is the most popular religion in Vietnam?", new String[]{"Buddhism", "Christianity", "Hoa Hao", "Islam"}, 0, 13, 14, false));
 
         return countryList;
     }

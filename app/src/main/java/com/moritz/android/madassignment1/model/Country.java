@@ -4,11 +4,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-//TO-DOS
-//TODO fix alignment on recyclerviews (especially questions, maybe using framelayout wrapper?)
-//TODO add more questions
-//TODO add stuff done during victory/defeat
-
 public class Country {
     private List<Question> questions;
     private String name;
