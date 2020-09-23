@@ -1,5 +1,3 @@
-/* Parts of this file comprise externally-obtained code. */
-
 package com.moritz.android.madassignment1.model;
 
 import com.moritz.android.madassignment1.R;

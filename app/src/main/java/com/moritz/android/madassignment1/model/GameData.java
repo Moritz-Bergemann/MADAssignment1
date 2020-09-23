@@ -1,3 +1,5 @@
+/* Parts of this file comprise externally-obtained code. */
+
 package com.moritz.android.madassignment1.model;
 
 import androidx.lifecycle.LiveData;
@@ -133,10 +135,11 @@ public class GameData {
         return seedPoints;
     }
 
-    /** FIXME self-reference - retrieved from OOSE assignment
+    /**
      * Creates a random integer between the imported min and max
      * @param min minimum value for random integer
-     * @param max maximum value for random integer
+     * @param max maximum value for random integer\
+     * Self-Reference: Retrieved from Moritz Bergemann's OOSE Assignment completed in Semester 1 of 2020
      * @return random integer
      */
     private static int randBetween(int min, int max) {
