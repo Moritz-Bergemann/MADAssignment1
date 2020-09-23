@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
         android:padding="4dp"
-        android:text="Start Game"
+        android:text="@string/startGame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
             android:id="@+id/seedPointsLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seed Points:" />
+            android:text="@string/seedPointsLabel" />
 
         <TextView
             android:id="@+id/seedPointsValue"
@@ -67,7 +67,7 @@
             android:id="@+id/targetPointsLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Target Points:" />
+            android:text="@string/targetPointsLabel" />
 
         <TextView
             android:id="@+id/targetPointsValue"

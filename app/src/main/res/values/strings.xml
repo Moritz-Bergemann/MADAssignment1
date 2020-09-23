@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">MAD Assignment 1</string>
-    <string name="special_point_confirmation">You possess a special point! The next flag will add 10 points to the value of each of its questions. Do you really want to pick this flag?</string>
+    <string name="specialPointConfirmation">You possess a special point! The next flag will add 10 points to the value of each of its questions. Do you really want to pick this flag?</string>
     <string name="penalty">Penalty:</string>
     <string name="loseGameText">You have won the game! Congratulations! Feel free to keep playing, though!</string>
     <string name="wonGameMessage">You have lost the game! Better luck next time! Feel free to keep playing, though!</string>
+    <string name="one">One</string>
+    <string name="two">Two</string>
+    <string name="three">Three</string>
+    <string name="changeOrientation">Change orientation</string>
+    <string name="scoreLabel">Score:</string>
+    <string name="startGame">Start Game</string>
+    <string name="seedPointsLabel">Seed Points:</string>
+    <string name="targetPointsLabel">Target Points:</string>
+    <string name="previous">Previous</string>
+    <string name="pointsLabel">Points:</string>
 </resources>

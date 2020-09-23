@@ -51,8 +51,7 @@ public class QuestionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        int layoutId = -1;
-
+        int layoutId;
 
         //NOTE: Making the layout get filled automatically would have been a way nicer solution, but
         //  the assignment spec specifically says different 'layouts'. This makes me unhappy, but

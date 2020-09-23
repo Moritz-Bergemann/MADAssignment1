@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="@+id/mainContent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainContent"></FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/mainContent"/>
 
     <FrameLayout
         android:id="@+id/questionContent"
@@ -69,5 +69,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/mainContent"
-        app:layout_constraintTop_toBottomOf="@+id/topBar"></FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/topBar"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

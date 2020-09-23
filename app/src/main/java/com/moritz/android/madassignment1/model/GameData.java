@@ -27,9 +27,9 @@ public class GameData {
 
     //CONSTANTS
     public static final int SEED_POINTS_MIN = 1;
-    public static final int SEED_POINTS_MAX = 5;
-    public static final int TARGET_POINTS_MIN = 6;
-    public static final int TARGET_POINTS_MAX = 10;
+    public static final int SEED_POINTS_MAX = 20;
+    public static final int TARGET_POINTS_MIN = 100;
+    public static final int TARGET_POINTS_MAX = 150;
 
     public static final int POINTS_ADDED_BY_SPECIAL = 10;
 

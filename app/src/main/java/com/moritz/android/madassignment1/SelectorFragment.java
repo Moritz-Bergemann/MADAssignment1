@@ -16,7 +16,7 @@ public abstract class SelectorFragment extends Fragment {
     private RecyclerView mRecycler;
 
     /**
-     * OnCreateView method must be overriden for the 'SelectorFragment' abstract class to inflate
+     * OnCreateView method must be overridden for the 'SelectorFragment' abstract class to inflate
      *  the specific layout belonging to the inheriting Fragment
      */
     @Nullable

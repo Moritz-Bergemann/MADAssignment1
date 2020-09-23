@@ -2,7 +2,6 @@ package com.moritz.android.madassignment1;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -33,7 +32,7 @@ public class CountrySelectorFragment extends SelectorFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_country_selector, container, false);
@@ -93,7 +92,7 @@ public class CountrySelectorFragment extends SelectorFragment {
                     if (gameData.getSpecialPoints() > 0) { //If the player has special points to spend
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
                         dialogBuilder.setTitle("Confirm add points");
-                        dialogBuilder.setMessage(R.string.special_point_confirmation);
+                        dialogBuilder.setMessage(R.string.specialPointConfirmation);
                         dialogBuilder.setPositiveButton("Yes", (dialogInterface, i) -> {
                             //Do special point stuff
                             mCountry.addPointsToQuestions(GameData.POINTS_ADDED_BY_SPECIAL);
