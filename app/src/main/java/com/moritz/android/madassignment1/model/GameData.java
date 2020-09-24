@@ -97,7 +97,7 @@ public class GameData {
             this.curPoints.setValue(points);
 
             //Setting gameOver if this change ended the game
-            if (curPoints.getValue() >= targetPoints || curPoints.getValue() < 0) {
+            if (curPoints.getValue() >= targetPoints || curPoints.getValue() <= 0) {
                 gameOver = true;
             }
         }
@@ -133,6 +133,14 @@ public class GameData {
 
     public int getSeedPoints() {
         return seedPoints;
+    }
+
+    public boolean isGameWon() {
+        return curPoints.getValue() >= targetPoints;
+    }
+
+    public boolean isGameLost() {
+        return curPoints.getValue() <= 0;
     }
 
     /**

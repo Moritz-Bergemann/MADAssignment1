@@ -43,9 +43,8 @@ public class ScoreTrackerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextView scoreValue = view.findViewById(R.id.scoreValue);
-        GameData.getInstance().getCurPoints().observe(getViewLifecycleOwner(), score -> {
-            scoreValue.setText(String.format(Locale.US, "%d", score));
-        });
+        GameData.getInstance().getCurPoints().observe(getViewLifecycleOwner(), score ->
+                scoreValue.setText(String.format(Locale.US, "%d", score)));
 
         Button previousButton = view.findViewById(R.id.previousButton);
         UIData.getInstance().getShowPreviousButton().observe(getViewLifecycleOwner(), showButton -> {
@@ -68,10 +67,10 @@ public class ScoreTrackerFragment extends Fragment {
         TextView winLoseText = view.findViewById(R.id.winLoseText);
         //Setting won/lost label
         GameData.getInstance().getCurPoints().observe(getViewLifecycleOwner(), points -> {
-            if (points >= GameData.getInstance().getTargetPoints()) { //If game won
+            if (GameData.getInstance().isGameWon()) { //If game won
                 winLoseText.setVisibility(View.VISIBLE);
                 winLoseText.setText(R.string.loseGameText);
-            } else if (points <= 0) { //If game lost
+            } else if (GameData.getInstance().isGameLost()) { //If game lost
                 winLoseText.setVisibility(View.VISIBLE);
                 winLoseText.setText(R.string.wonGameMessage);
             } else {
