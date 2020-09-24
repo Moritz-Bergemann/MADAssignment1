@@ -40,4 +40,16 @@ public class Country {
             question.setPoints(question.getPoints() + pointsAdded);
         }
     }
+
+    public boolean allQuestionsAnswered() {
+        boolean allAnswered = true;
+
+        for (Question question : questions) {
+            if (!question.isAnswered()) {
+                allAnswered = false;
+            }
+        }
+
+        return allAnswered;
+    }
 }

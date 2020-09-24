@@ -20,7 +20,6 @@ public class CountryDataGenerator {
         ag.addQuestion(new Question("What is the size of Antigua and Barbuda (in square kilometres)?", new String[]{"443", "228", "600", "480"}, 0, 18, 15, true));
         ag.addQuestion(new Question("How many airports are there in Antigua and Barbuda?", new String[]{"3", "15", "62"}, 0, 10, 12, false));
 
-
         Country ai = new Country("Anguilla", R.drawable.flag_ai);
         countryList.add(ai);
         ai.addQuestion(new Question("What is the capital city of Anguilla?", new String[]{"The Valley", "Island Harbour", "Sandy Ground"}, 0, 10, 19, false));
@@ -28,7 +27,6 @@ public class CountryDataGenerator {
         ai.addQuestion(new Question("What is the GDP of Anguilla?", new String[]{"108,900,000 USD", "130,542,516 USD", "69,388,604 USD", "147,331,119 USD"}, 0, 10, 14, true));
         ai.addQuestion(new Question("What is the name of the largest city (by population) in Anguilla?", new String[]{"The Valley", "Island Harbour", "Sandy Ground", "Stoney Ground"}, 0, 7, 16, false));
         ai.addQuestion(new Question("What is the size of Anguilla (in square kilometres)?", new String[]{"91", "111", "93", "129"}, 0, 11, 19, false));
-
 
         Country az = new Country("Azerbaijan", R.drawable.flag_az);
         countryList.add(az);
@@ -141,10 +139,10 @@ public class CountryDataGenerator {
         kr.addQuestion(new Question("What is the name of the largest city (by population) in South Korea?", new String[]{"Seoul", "Busan", "Daegu"}, 0, 6, 12, false));
         kr.addQuestion(new Question("What is the size of South Korea (in square kilometres)?", new String[]{"99'720", "109'203", "135'707", "56'426"}, 0, 17, 8, true));
         kr.addQuestion(new Question("How much was the South Korean 'K-Pop' industry estimated to be worth in 2017 (in USD)?", new String[]{"$5 billion", "$2.5 billion", "$1 billion", "$10 billion"}, 0, 10, 5, false));
-        ai.addQuestion(new Question("What is the name of the current President of South Korea?", new String[]{"Moon Jae-in", "Jeon Jung-kook", "Kim Ji-soo", "Lee Tae-min"}, 0, 5, 9, false));
-        ai.addQuestion(new Question("Approximately how much of the countries population are internet users?", new String[]{"92%", "68%", "76%", "89%"}, 0, 16, 7, false));
-        ai.addQuestion(new Question("What is the most popular last name in South Korea?", new String[]{"Kim", "Lee", "Park", "Choi"}, 0, 5, 20, false));
-        ai.addQuestion(new Question("What is the name of traditional South Korean attire?", new String[]{"Hanbok", "Kimono", "Yukata"}, 0, 11, 7, false));
+        kr.addQuestion(new Question("What is the name of the current President of South Korea?", new String[]{"Moon Jae-in", "Jeon Jung-kook", "Kim Ji-soo", "Lee Tae-min"}, 0, 5, 9, false));
+        kr.addQuestion(new Question("Approximately how much of the South Korean population are internet users?", new String[]{"92%", "68%", "76%", "89%"}, 0, 16, 7, false));
+        kr.addQuestion(new Question("What is the most popular last name in South Korea?", new String[]{"Kim", "Lee", "Park", "Choi"}, 0, 5, 20, false));
+        kr.addQuestion(new Question("What is the name of traditional South Korean attire?", new String[]{"Hanbok", "Kimono", "Yukata"}, 0, 11, 7, false));
 
         Country de = new Country("Germany", R.drawable.flag_de);
         countryList.add(de);

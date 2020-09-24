@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.moritz.android.madassignment1.model.Country;
 import com.moritz.android.madassignment1.model.GameData;
@@ -89,26 +90,30 @@ public class CountrySelectorFragment extends SelectorFragment {
                 GameData gameData = GameData.getInstance();
 
                 itemView.setOnClickListener(view -> {
-                    if (gameData.getSpecialPoints() > 0) { //If the player has special points to spend
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
-                        dialogBuilder.setTitle("Confirm add points");
-                        dialogBuilder.setMessage(R.string.specialPointConfirmation);
-                        dialogBuilder.setPositiveButton("Yes", (dialogInterface, i) -> {
-                            //Do special point stuff
-                            mCountry.addPointsToQuestions(GameData.POINTS_ADDED_BY_SPECIAL);
-                            gameData.loseSpecialPoint();
-                        });
-                        dialogBuilder.setNegativeButton("Cancel", null);
+                    if (!country.allQuestionsAnswered()) {
+                        if (gameData.getSpecialPoints() > 0) { //If the player has special points to spend
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
+                            dialogBuilder.setTitle("Confirm add points");
+                            dialogBuilder.setMessage(R.string.specialPointConfirmation);
+                            dialogBuilder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                                //Do special point stuff
+                                mCountry.addPointsToQuestions(GameData.POINTS_ADDED_BY_SPECIAL);
+                                gameData.loseSpecialPoint();
+                            });
+                            dialogBuilder.setNegativeButton("Cancel", null);
 
-                        //Show the dialog
-                        dialogBuilder.create().show();
+                            //Show the dialog
+                            dialogBuilder.create().show();
 
-                    } else { //If player has no special points
-                        //Begin question activity
-                        if (getActivity() instanceof CountriesActivity) {
-                            GameData.getInstance().setCurCountry(country);
-                            ((CountriesActivity) getActivity()).goToQuestionSelector();
+                        } else { //If player has no special points
+                            //Begin question activity
+                            if (getActivity() instanceof CountriesActivity) {
+                                GameData.getInstance().setCurCountry(country);
+                                ((CountriesActivity) getActivity()).goToQuestionSelector();
+                            }
                         }
+                    } else {
+                        Toast.makeText(requireContext(), R.string.allQuestionsAnswered, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
