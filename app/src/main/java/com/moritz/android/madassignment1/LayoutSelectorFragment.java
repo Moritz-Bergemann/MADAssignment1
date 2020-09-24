@@ -84,11 +84,11 @@ public class LayoutSelectorFragment extends Fragment {
             if (orientation == GridLayoutManager.HORIZONTAL) {
                 mTwoButton.setImageResource(R.drawable.square_ver_two);
                 mThreeButton.setImageResource(R.drawable.square_ver_three);
-                mOrientationButton.setImageResource(R.drawable.arrow_right);
+                mOrientationButton.setImageResource(R.drawable.arrow_down);
             } else { //If orientation is vertical
                 mTwoButton.setImageResource(R.drawable.square_hor_two);
                 mThreeButton.setImageResource(R.drawable.square_hor_three);
-                mOrientationButton.setImageResource(R.drawable.arrow_down);
+                mOrientationButton.setImageResource(R.drawable.arrow_right);
             }
         });
     }
