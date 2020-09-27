@@ -1,5 +1,8 @@
 package com.moritz.android.madassignment1.model;
 
+/**
+ * Class for a question in the quiz
+ */
 public class Question {
     private String question;
     private String[] choices;
@@ -20,6 +23,10 @@ public class Question {
         this.answered = false;
     }
 
+    /**
+     * @param choice index of answer in answer array
+     * @return whether the input index was the correct answer
+     */
     public boolean isCorrectChoice(int choice) {
         return choice == correctChoice;
     }

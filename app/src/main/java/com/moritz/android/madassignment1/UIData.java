@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 /**
- * ViewModel class for UI components - used for communication between fragments regarding UI layout.
+ * Singleton class for UI components - used for communication between fragments regarding UI layout.
  */
 public class UIData {
     //** SINGLETON STUFF **

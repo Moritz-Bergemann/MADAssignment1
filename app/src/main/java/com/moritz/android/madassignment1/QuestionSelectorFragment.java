@@ -128,6 +128,9 @@ public class QuestionSelectorFragment extends SelectorFragment {
                 mPointsValue.setText(String.format(Locale.US, "%d", question.getPoints()));
                 mPenaltyValue.setText(String.format(Locale.US, "%d", question.getPenalty()));
 
+                //Making the question boxes resize in response to orientation changes (so that
+                //  horizontal orientation does not have the containing box take up the entire
+                //  vertical space)
                 UIData.getInstance().getOrientation().observe(getViewLifecycleOwner(), integer -> {
                     switch (integer) {
                         case GridLayoutManager.HORIZONTAL:

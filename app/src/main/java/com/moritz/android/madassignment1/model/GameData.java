@@ -5,9 +5,6 @@ package com.moritz.android.madassignment1.model;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.moritz.android.madassignment1.R;
-
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 

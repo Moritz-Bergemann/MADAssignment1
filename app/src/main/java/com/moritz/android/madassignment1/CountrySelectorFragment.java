@@ -90,6 +90,7 @@ public class CountrySelectorFragment extends SelectorFragment {
                 GameData gameData = GameData.getInstance();
 
                 itemView.setOnClickListener(view -> {
+                    //If question has not already been answered
                     if (!country.allQuestionsAnswered()) {
                         if (gameData.getSpecialPoints() > 0) { //If the player has special points to spend
                             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext());
